@@ -1,0 +1,48 @@
+<div class="ui two column middle aligned relaxed grid basic segment">
+	<div class="center aligned column">
+		<table class="ui column table segment">
+			<thead>
+				<tr>
+					<th><abbr title="Position">#</abbr></th>
+					<th>Name</th>
+					<th><abbr title="Games played">Pld</abbr></th>
+					<th><abbr title="Wins home">WH</abbr></th>
+					<th><abbr title="Draws home">DH</abbr></th>
+					<th><abbr title="Losses home">LH</abbr></th>
+					<th><abbr title="Points home">Pts H</abbr></th>
+					<th><abbr title="Wins away">WA</abbr></th>
+					<th><abbr title="Draws away">DA</abbr></th>
+					<th><abbr title="Losses away">LA</abbr></th>
+					<th><abbr title="Points away">Pts A</abbr></th>
+					<th><abbr title="Wins">W</abbr></th>
+					<th><abbr title="Draws">D</abbr></th>
+					<th><abbr title="Losses">L</abbr></th>
+					<th><abbr title="Points">Pts</abbr></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="team in league">
+					<td>{{team.position}}</td>
+					<td>{{team.name}}</td>
+					<td>{{team.played}}</td>
+					<td>{{team.homeWins}}</td>
+					<td>{{team.homeDraws}}</td>
+					<td>{{team.homeLosses}}</td>
+					<td>{{team.pointsHome}}</td>
+					<td>{{team.awayWins}}</td>
+					<td>{{team.awayDraws}}</td>
+					<td>{{team.awayLosses}}</td>
+					<td>{{team.pointsAway}}</td>
+					<td>{{team.wins}}</td>
+                    <td>{{team.draws}}</td>
+                    <td>{{team.losses}}</td>
+                    <td>{{team.points}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<div class="ui vertical  divider">
+	</div>
+	<div class="center aligned column"></div>
+</div>
