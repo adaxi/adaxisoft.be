@@ -1,0 +1,7 @@
+{
+    "portugal..1" : {
+        "scraper" : "FootballDataScraper",
+        "local" : "Sports/data/portugal..1.csv",
+        "remote" : "http://www.football-data.co.uk/mmz4281/1314/P1.csv"
+    }
+}

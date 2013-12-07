@@ -18,10 +18,10 @@ class NameManager {
 		return $name;
 	}
 	public static function getLastNames($number = 1) {
-		return NameManager::randomLine ( "data/last_names.txt", 12484, $number );
+		return NameManager::randomLine ( "Names/data/last_names.txt", 12484, $number );
 	}
 	public static function getFirstNames($number = 1) {
-		return NameManager::randomLine ( "data/first_names.txt", 8607, $number );
+		return NameManager::randomLine ( "Names/data/first_names.txt", 8607, $number );
 	}
 	private static function randomLine($fileName, $maxLines, $number) {
 		$names = array();

@@ -1,6 +1,6 @@
 <?php
 
-class Scraper {
+class FootballDataScraper {
     private $rawData;
     function __construct($file) {
         $headers = array();

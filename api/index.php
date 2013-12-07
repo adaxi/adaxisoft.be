@@ -5,8 +5,8 @@
  */
 require 'lib/Slim/Slim.php';
 
-include_once "model/Sports/LeagueManager.php";
-include_once "model/Names/NameManager.php";
+include_once "Sports/LeagueManager.php";
+include_once "Names/NameManager.php";
 
 \Slim\Slim::registerAutoloader ();
 
@@ -75,6 +75,15 @@ $app->get ( '/sports/league/:country',
 			header ( "Content-Type: application/json" );
 			echo json_encode ( LeagueManager::listTable ($country) );
 		} );
+
+
+$app->get ( '/sports/update',
+		function () {
+			header ( "Content-Type: application/json" );
+			LeagueManager::downloadAllLeagues();
+			echo json_encode ( array('result' => 'ok') );
+		} );
+
 /**
  * Step 4: Run the Slim application
  *
