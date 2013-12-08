@@ -10,14 +10,14 @@ class EurofotbalScraper {
 		$crawler = new Symfony\Component\DomCrawler\Crawler ();
 		$crawler->addHtmlContent ( $html );
 		
-		$table = $crawler->filterXPath ( '//table' );
+		$table = $crawler->filterXPath ( "//table[@class='matches']" );
 		foreach ( $table->children () as $tr ) {
 			$match = array();
 			$hasScore = false;
 			foreach ( $tr->childNodes as $td ) {
 				$class = $td->attributes->getNamedItem ( 'class' )->nodeValue;
 				if ($class === "teams") {
-					$teams = explode ( '-', $td->nodeValue );
+					$teams = explode ( ' - ', $td->nodeValue );
 					$match['HomeTeam'] = trim ( $teams[0] );
 					$match['AwayTeam'] = trim ( $teams[1] );
 				} elseif ($class === 'res nbr') {
