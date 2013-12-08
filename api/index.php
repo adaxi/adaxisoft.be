@@ -73,15 +73,68 @@ $app->get ( '/sports/league/',
 $app->get ( '/sports/league/:country',
 		function ($country) {
 			header ( "Content-Type: application/json" );
-			echo json_encode ( LeagueManager::listTable ($country) );
+			try {
+				echo json_encode ( LeagueManager::listTable ( $country ) );
+			} catch ( Exception $e ) {
+				echo json_encode (
+						array(
+							'result' => 'fail',
+							'message' => $e->getMessage ()
+						) );
+			}
 		} );
 
+$app->get ( '/sports/league/:country/:division',
+		function ($country, $division) {
+			header ( "Content-Type: application/json" );
+			try {
+				echo json_encode (
+						LeagueManager::listTable ( $country, $division ) );
+			} catch ( Exception $e ) {
+				echo json_encode (
+						array(
+							'result' => 'fail',
+							'message' => $e->getMessage ()
+						) );
+			}
+		} );
+
+$app->get ( '/sports/news/:country',
+		function ($country) {
+			header ( "Content-Type: application/json" );
+			try {
+				echo json_encode ( LeagueManager::getNews ( $country ) );
+			} catch ( Exception $e ) {
+				echo json_encode (
+						array(
+							'result' => 'fail',
+							'message' => $e->getMessage ()
+						) );
+			}
+		} );
+
+$app->get ( '/sports/news/:country/:division',
+		function ($country, $division) {
+			header ( "Content-Type: application/json" );
+			try {
+				echo json_encode (
+						LeagueManager::getNews ( $country, $division ) );
+			} catch ( Exception $e ) {
+				echo json_encode (
+						array(
+							'result' => 'fail',
+							'message' => $e->getMessage ()
+						) );
+			}
+		} );
 
 $app->get ( '/sports/update',
 		function () {
 			header ( "Content-Type: application/json" );
-			LeagueManager::downloadAllLeagues();
-			echo json_encode ( array('result' => 'ok') );
+			LeagueManager::downloadAllLeagues ();
+			echo json_encode ( array(
+									'result' => 'ok'
+			) );
 		} );
 
 /**

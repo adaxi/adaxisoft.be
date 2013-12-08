@@ -65,6 +65,8 @@ class Team {
         $homeWins = 0;
         $homeDraws = 0;
         $homeLosses = 0;
+        $homeConceded = 0;
+        $homeScored = 0;
         foreach ( $this->homeMatches as $match ) {
             if ($match->isWon ($this)) {
                 $homeWins ++;
@@ -73,11 +75,15 @@ class Team {
             } else {
                 $homeLosses ++;
             }
+            $homeConceded += $match->getScoreAwayTeam();
+            $homeScored += $match->getScoreHomeTeam();
         }
         
         $awayWins = 0;
         $awayDraws = 0;
         $awayLosses = 0;
+        $awayConceded = 0;
+        $awayScored = 0;
         foreach ( $this->awayMatches as $match ) {
             if ($match->isWon ($this)) {
                 $awayWins ++;
@@ -86,6 +92,8 @@ class Team {
             } else {
                 $awayLosses ++;
             }
+            $awayConceded += $match->getScoreHomeTeam();
+            $awayScored += $match->getScoreAwayTeam();
         }
         
         
@@ -94,16 +102,25 @@ class Team {
         	'played' => count($this->awayMatches) + count($this->homeMatches),
             'points' => ($homeWins * League::$points + $homeDraws) + ($awayWins * League::$points + $awayDraws),
             'wins' => $homeWins + $awayWins,
+        	'gScored' => $homeScored + $awayScored,
+        	'gConceded' => $homeConceded + $awayConceded,
+        	'gDifference' => $homeScored + $awayScored - $homeConceded - $awayConceded,
             'draws' => $homeDraws + $awayDraws,
             'losses' => $homeLosses + $awayLosses,
             'pointsHome' => $homeWins * League::$points + $homeDraws,
             'homeWins' => $homeWins,
             'homeDraws' =>$homeDraws,
             'homeLosses' =>$homeLosses,
+        	'homeScore' => $homeScored,
+        	'homeConceded' => $homeConceded,
+        	'homeDifference' => $homeScored - $homeConceded,
             'pointsAway' => $awayWins * League::$points + $awayDraws,
             'awayWins' =>$awayWins,
             'awayDraws' =>$awayDraws,
             'awayLosses' =>$awayLosses,
+        	'awayScore' => $awayScored,
+        	'awayConceded' => $awayConceded,
+        	'awayDifference' => $awayScored - $awayConceded,
         )
         ;
     }

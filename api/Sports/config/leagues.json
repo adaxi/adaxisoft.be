@@ -1,7 +1,68 @@
 {
     "portugal..1" : {
+        "rss" : "http://rss.feedsportal.com/c/32502/f/480420/index.rss",
+        "scraper" : "EurofotbalScraper",
+        "local" : "Sports/data/portugal..1.html",
+        "remote" : "http://www.eurofotbal.cz/primeira-liga/2013-2014/vysledky-rozlosovani/?month=0"
+    },
+    "england..1" : {
+        "scraper" : "EurofotbalScraper",
+        "local" : "Sports/data/england..1.html",
+        "remote" : "http://www.eurofotbal.cz/premier-league/2013-2014/vysledky-rozlosovani/?month=0"
+    },
+    "england..2" : {
         "scraper" : "FootballDataScraper",
-        "local" : "Sports/data/portugal..1.csv",
-        "remote" : "http://www.football-data.co.uk/mmz4281/1314/P1.csv"
+        "local" : "Sports/data/england..2.csv",
+        "remote" : "http://www.football-data.co.uk/mmz4281/1314/E1.csv"
+    },
+    "germany..1" : {
+        "scraper" : "EurofotbalScraper",
+        "local" : "Sports/data/germany..1.html",
+        "remote" : "http://www.eurofotbal.cz/bundesliga/2013-2014/vysledky-rozlosovani/?month=0"
+    },
+    "germany..2" : {
+        "scraper" : "FootballDataScraper",
+        "local" : "Sports/data/germany..2.csv",
+        "remote" : "http://www.football-data.co.uk/mmz4281/1314/D2.csv"
+    },
+    "italy..1" : {
+        "scraper" : "FootballDataScraper",
+        "local" : "Sports/data/italy..1.csv",
+        "remote" : "http://www.football-data.co.uk/mmz4281/1314/I1.csv"
+    },
+    "italy..2" : {
+        "scraper" : "FootballDataScraper",
+        "local" : "Sports/data/italy..2.csv",
+        "remote" : "http://www.football-data.co.uk/mmz4281/1314/I2.csv"
+    },
+    "spain..1" : {
+        "scraper" : "FootballDataScraper",
+        "local" : "Sports/data/spain..1.csv",
+        "remote" : "http://www.football-data.co.uk/mmz4281/1314/SP1.csv"
+    },
+    "spain..2" : {
+        "scraper" : "FootballDataScraper",
+        "local" : "Sports/data/spain..2.csv",
+        "remote" : "http://www.football-data.co.uk/mmz4281/1314/SP2.csv"
+    },
+    "france..1" : {
+        "scraper" : "FootballDataScraper",
+        "local" : "Sports/data/france..1.csv",
+        "remote" : "http://www.football-data.co.uk/mmz4281/1314/F1.csv"
+    },
+    "france..2" : {
+        "scraper" : "FootballDataScraper",
+        "local" : "Sports/data/france..2.csv",
+        "remote" : "http://www.football-data.co.uk/mmz4281/1314/F2.csv"
+    },
+    "belgium..1" : {
+        "scraper" : "FootballDataScraper",
+        "local" : "Sports/data/belgium..1.csv",
+        "remote" : "http://www.football-data.co.uk/mmz4281/1314/B1.csv"
+    },
+    "belgium..2" : {
+        "scraper" : "FootballDataScraper",
+        "local" : "Sports/data/belgium..2.csv",
+        "remote" : "http://www.football-data.co.uk/mmz4281/1314/B2.csv"
     }
 }

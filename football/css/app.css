@@ -2,3 +2,11 @@ body {
 	font-family: 'Open Sans Condensed', sans-serif;
 	background: #F5F5F5;
 }
+
+a:link {
+    color: #009FDA;
+}
+
+a:hover {
+	color: #00BAFF;
+}
