@@ -15,8 +15,6 @@ include_once "Names/NameManager.php";
  */
 $app = new \Slim\Slim ();
 
-sleep(5);
-
 /**
  * Step 3: Define the Slim application routes
  *
