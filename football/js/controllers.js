@@ -12,6 +12,7 @@ controllers.controller('StandingsCtrl', [ '$scope', '$routeParams', 'League',
             }
             $scope.league = data;
         });
+        console.log("done");
         League.table($routeParams.country, 2).then(function(data) {
             if (data.result && data.result == 'fail') {
                 return;
