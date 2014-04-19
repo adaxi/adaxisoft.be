@@ -5,3 +5,7 @@ dist
 app/bower_components
 adaxisoft.be.komodoproject
 .komodotools
+.settings
+.vagrant
+.buildpath
+.project
