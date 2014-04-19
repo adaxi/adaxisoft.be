@@ -1,0 +1,46 @@
+<div class="ui form segment">
+    <div class="three fields">
+        <div class="field">
+            <label>Website</label>
+            <div class="ui left input">
+              <input type="text" placeholder="Website" ng-model="site.title">
+            </div>
+        </div>       
+        <div class="field">
+            <label>URL</label>
+            <div class="ui left input">
+              <input type="text" placeholder="https://..." ng-model="site.url">
+            </div>
+        </div>
+        <div class="field">
+            <label>Importance</label>
+            <select ng-model="site.importance" ng-init="site.importance = site.importance || 10" style="border: 1px solid rgba(0,0,0,.15); width: 100%; margin: 0; border-radius: .3125em; font-size: 1em; color: rgba(0,0,0,.7); height: 42px;">
+                <option value="10">High</option>
+                <option value="20">Medium</option>
+                <option value="40">Low</option>
+            </select>
+        </div>
+    </div>
+    <div class="field">
+        <div class="ui blue submit button" ng-click="addWebsite(site)">Submit</div>
+    </div>
+</div>
+
+<table class="ui column table segment">
+    <thead>
+        <tr>
+            <th>Site</th>
+            <th>Importance</th>
+            <th>URL</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="site in sites">
+            <td>{{site.title}}</td>
+            <td>{{site.importance}}</td>
+            <td>{{site.url}}</td>
+            <td><i class="trash icon red" ng-click="deleteWebsite(site.id)"></i></td>
+        </tr>
+    </tbody>
+</table>
