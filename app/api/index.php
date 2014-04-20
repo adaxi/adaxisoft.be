@@ -30,6 +30,10 @@ function json(){
  * to appropriate HTTP request methods.
  */
 
+ //
+ // Names
+ //
+ 
 $app->get ( '/name/',
 function () use ($app) {
 	header ( "Content-Type: text/plain" );
@@ -55,115 +59,77 @@ function ($number) use ($app) {
 } )->conditions ( array( "number" => "\d{1,2}" ) );
 
 $app->get ( '/name/last/:number',
-		function ($number) use ($app) {
-			header ( "Content-Type: text/plain" );
-			echo implode ( "\n", NameManager::getLastNames ( $number ) );
-		} )->conditions ( array(
-								"number" => "\d{1,2}"
-) );
+function ($number) use ($app) {
+	header ( "Content-Type: text/plain" );
+	echo implode ( "\n", NameManager::getLastNames ( $number ) );
+} )->conditions ( array( "number" => "\d{1,2}" ) );
 
 $app->get ( '/name/:number',
-		function ($number) use ($app) {
-			header ( "Content-Type: text/plain" );
-			echo implode ( "\n", NameManager::getNames ( $number ) );
-		} )->conditions ( array(
-								"number" => "\d{1,2}"
-) );
+function ($number) use ($app) {
+	header ( "Content-Type: text/plain" );
+	echo implode ( "\n", NameManager::getNames ( $number ) );
+} )->conditions ( array( "number" => "\d{1,2}" ) );
 
-$app->get ( '/sports/league/',
-		function () use ($app){
-			header ( "Content-Type: application/json" );
-			echo json_encode ( LeagueManager::getTable () );
-		} );
+//
+// Football
+//
 
-$app->get ( '/sports/league/:country',
-		function ($country) use ($app){
-			header ( "Content-Type: application/json" );
-			try {
-				echo json_encode ( LeagueManager::getTable( $country ) );
-			} catch ( Exception $e ) {
-				echo json_encode (
-						array(
-							'result' => 'fail',
-							'message' => $e->getMessage ()
-						) );
-			}
-		} );
+$app->get ( '/sports/league/', 'json',
+function () use ($app) {
+	$app->render(200, array('data' => LeagueManager::getTable () ) );
+} );
 
-$app->get ( '/sports/league/:country/:division',
-		function ($country, $division)use ($app) {
-			header ( "Content-Type: application/json" );
-			try {
-				echo json_encode (
-						LeagueManager::getTable ( $country, $division ) );
-			} catch ( Exception $e ) {
-				echo json_encode (
-						array(
-							'result' => 'fail',
-							'message' => $e->getMessage ()
-						) );
-			}
-		} );
+$app->get ( '/sports/league/:country', 'json',
+function ($country) use ($app) {
+	$app->render(200, array('data' => LeagueManager::getTable( $country ) ) );
+} );
 
-$app->get ( '/sports/news/:country',
-		function ($country)use ($app) {
-			header ( "Content-Type: application/json" );
-			try {
-				echo json_encode ( LeagueManager::getNews ( $country ) );
-			} catch ( Exception $e ) {
-				echo json_encode (
-						array(
-							'result' => 'fail',
-							'message' => $e->getMessage ()
-						) );
-			}
-		} );
+$app->get ( '/sports/league/:country/:division', 'json',
+function ($country, $division)use ($app) {
+	$app->render(200, array('data' => LeagueManager::getTable ( $country, $division ) ) );
+} );
 
-$app->get ( '/sports/news/:country/:division',
-		function ($country, $division) use ($app){
-			header ( "Content-Type: application/json" );
-			try {
-				echo json_encode (
-						LeagueManager::getNews ( $country, $division ) );
-			} catch ( Exception $e ) {
-				echo json_encode (
-						array(
-							'result' => 'fail',
-							'message' => $e->getMessage ()
-						) );
-			}
-		} );
+$app->get ( '/sports/news/:country', 'json',
+function ($country)use ($app) {
+	$app->render(200, array('data' => LeagueManager::getNews ( $country ) ) );
+} );
 
-$app->get ( '/sports/update',
-		function () use ($app) {
-			header ( "Content-Type: application/json" );
-			LeagueManager::downloadAllLeagues ();
-			echo json_encode ( array(
-									'result' => 'ok'
-			) );
-		} );
+$app->get ( '/sports/news/:country/:division',  'json',
+function ($country, $division) use ($app) {
+	$app->render(200, array('data' => LeagueManager::getNews ( $country, $division ) ) );
+} );
+
+$app->get ( '/sports/update',  'json',
+function () use ($app) {
+	LeagueManager::downloadAllLeagues ();
+	$app->render(200, array());	
+} );
+
+//
+// Reset
+// 
 
 
-$app->get ( '/password_reset/website', 'json',
+$app->get ( '/reset/website', 'json',
 function () use ($app) {			
 	$app->render(200, array('data' => PasswordResetManager::getList()));
 } );
 
-$app->put ( '/password_reset/website/:id', 'json',
+$app->put ( '/reset/website/:id', 'json',
 function ($id) use ($app) {
 	$record = $app->request()->getBody();
 	PasswordResetManager::update($record, $id);
 	$app->render(200, array());	
 } );
 
-$app->post ( '/password_reset/website', 'json',
+$app->post ( '/reset/website', 'json',
 function () use ($app) {
 	$record = $app->request()->getBody();
 	PasswordResetManager::insert($record);
 	$app->render(200, array());
 } );
 
-$app->delete ( '/password_reset/website/:id', 'json',
+$app->delete ( '/reset/website/:id', 'json',
 function ($id) use ($app) {
 	PasswordResetManager::delete($id);
 	$app->render(200, array());

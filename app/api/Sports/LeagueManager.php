@@ -68,8 +68,11 @@ class LeagueManager {
 			throw new Exception ( "This league does not exist." );
 		}
 		$league = $config[$league];
-		return array(
-					'feed' => $league['rss']
-		);
+		if (array_key_exists('rss', $league)){
+			return array( 'feed' => $league['rss'] );
+		} else {
+			return array('feed', array());
+		}
+		
 	}
 }

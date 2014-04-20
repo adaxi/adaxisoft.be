@@ -11,6 +11,10 @@ var app = angular.module('adaxisoft.be',[
 
 
 app.config([ '$routeProvider', function($routeProvider) {
+    $routeProvider.when('/', {
+        templateUrl : 'partials/home.html',
+        controller : 'HomeCtrl'
+    });
     $routeProvider.when('/standings/:country', {
         templateUrl : 'partials/standings.html',
         controller : 'StandingsCtrl'
@@ -20,7 +24,7 @@ app.config([ '$routeProvider', function($routeProvider) {
         controller : 'ResetCtrl'
     });
     $routeProvider.otherwise({
-        redirectTo : '/standings/portugal'
+        redirectTo : '/'
     });
 } ]);
 
@@ -28,13 +32,6 @@ app.config([ '$routeProvider', function($routeProvider) {
 app.config(function(RestangularProvider){
     RestangularProvider.setBaseUrl('/api/');
     RestangularProvider.setResponseExtractor(function(response, operation) {
-       
-        //if (operation === "getList") {
-        //    response.data = response.data || [];
-        //} else {
-        //    response.data = response.data || {};
-        //}
-        
         return response.data;
     });
 });

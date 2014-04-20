@@ -42,16 +42,10 @@ function($scope, $routeParams, football, rss, menu) {
 	}]]);
 
 	football.table($routeParams.country, 1).then(function(data) {
-		if (data.result && data.result == 'fail') {
-			return;
-		}
 		$scope.league = data;
 	});
 
 	football.table($routeParams.country, 2).then(function(data) {
-		if (data.result && data.result == 'fail') {
-			return;
-		}
 		$scope.league2 = data;
 	});
 
@@ -73,17 +67,27 @@ function($scope, $routeParams, football, rss, menu) {
 
 }]);
 
+controllers.controller('HomeCtrl', ['$scope', 'menu',
+function($scope, menu) {
+	menu.clear();
+}]);
+
 controllers.controller('ResetCtrl', ['$scope', '$routeParams', 'menu', 'Restangular',
 function($scope, $routeParams, menu, Restangular) {
-	menu.setStructure([[]]);
+	menu.clear();
 	
-	Restangular.all("password_reset/website").getList().then(function(sites) {
+	Restangular.all("reset/website").getList().then(function(sites) {
 		$scope.sites = sites;	
 	});
 	
 	$scope.addWebsite = function(site) {
-		$scope.sites.post(site);
-		$scope.sites[$scope.sites.length] = site;
+		$scope.sites.post(site).then(function() {
+			$scope.sites[$scope.sites.length] = site;
+		}, function() {
+			// TODO Display a message to the user
+			console.log("TODO display error message");
+		});
+		
 		$scope.site = { importance : 10 };
 	}
 	
@@ -93,7 +97,19 @@ function($scope, $routeParams, menu, Restangular) {
 		});
 		site.remove().then(function(){
 			$scope.sites = _.without($scope.sites, site);	
+		}, function() {
+			// TODO Display a message to the user
+			console.log("TODO display error message");
 		});
+	}
+	
+	$scope.markToUpdate = function (site) {
+		$scope.site = site;
+	}
+	
+	$scope.updateWebsite = function (site) {		
+		site.put();
+		$scope.site = { importance : 10 };
 	}
 	
 }]);

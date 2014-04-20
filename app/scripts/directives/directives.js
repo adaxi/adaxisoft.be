@@ -20,3 +20,24 @@ directives.directive( 'menu', [ function() {
 
 	};
 }]);
+
+directives.directive('importance', [ function() {
+	return {
+		restrict : 'A',
+		replace : true,
+		template : '<div class="ui label {{color}}">{{text}}</div>',
+		link: function(scope, element, attrs) {
+			
+			if (attrs.importance <= 10) {
+				scope.color = 'orange';
+				scope.text = 'HIGH';
+			} else if (attrs.importance > 10 && attrs.importance <= 20) {
+				scope.color = 'black';
+				scope.text = 'MEDIUM';
+			} else if (attrs.importance > 20) {
+				scope.color = 'green';
+				scope.text = 'LOW';
+			}			
+		}
+	}
+}]);

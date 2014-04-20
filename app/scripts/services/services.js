@@ -2,9 +2,9 @@
 
 /* Services */
 
-var services = angular.module('adaxisoft.be.services', []);
+var services = angular.module('adaxisoft.be.services', ['restangular']);
 
-services.factory('football', [ '$http', function($http) {
+services.factory('football', [ 'Restangular', function(Restangular) {
 	var cache = {};
 
 	return {
@@ -14,11 +14,11 @@ services.factory('football', [ '$http', function($http) {
 			var id = 'table..' + country + '..' + division;
 			var promise = cache[id];
 			if (!promise) {
-				promise = $http.get('../api/sports/league/' + country + '/' + division, {});
+				promise = Restangular.oneUrl('football', '/api/sports/league/' + country + '/' + division).get();				
 				cache[id] = promise;
 			}
 			return promise.then(function(response) {
-				return response.data;
+				return response;
 			});
 		},
 		'rss' : function(country, division) {
@@ -27,11 +27,11 @@ services.factory('football', [ '$http', function($http) {
 			var id = 'rss..' + country + ".." + division;
 			var promise = cache[id];
 			if (!promise) {
-				promise = $http.get('../api/sports/news/' + country + '/' + division, {});
+				promise = Restangular.oneUrl('football', '/api/sports/news/' + country + '/' + division).get();
 				cache[id] = promise;
 			}
 			return promise.then(function(response) {
-				return response.data;
+				return response;
 			});
 		}
 	};
@@ -58,6 +58,9 @@ services.factory('menu', [function() {
 			},
 			setStructure : function(structure) {
 				menu.structure = structure;
+			},
+			clear: function() {
+				menu.structure = [[]];
 			}
 	};
 	return menu;

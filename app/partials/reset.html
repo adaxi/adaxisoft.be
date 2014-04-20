@@ -22,25 +22,27 @@
         </div>
     </div>
     <div class="field">
-        <div class="ui blue submit button" ng-click="addWebsite(site)">Submit</div>
+        <div ng-if="!site.id" class="ui blue submit button" ng-click="addWebsite(site)">Submit</div>
+        <div ng-if="site.id" class="ui blue submit button" ng-click="updateWebsite(site)">Update</div>
     </div>
 </div>
 
-<table class="ui column table segment">
+<table class="ui column table segment" ng-init="predicate='importance'; reverse='false';">
     <thead>
         <tr>
-            <th>Site</th>
-            <th>Importance</th>
-            <th>URL</th>
-            <th>Action</th>
+            <th class="one wide">Action</th>
+            <th class="one wide"><a href="" ng-click="predicate = 'importance'; reverse=!reverse">Importance</a></th>
+            <th class="four wide"><a href="" ng-click="predicate = 'site'; reverse=!reverse">Site</a></th>            
+            <th class="ten wide">URL</th>            
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="site in sites">
+        <tr  ng-repeat="site in sites | orderBy:predicate:reverse">
+            <td><i class="trash icon" ng-click="deleteWebsite(site.id)"></i><i class="pencil icon" ng-click="markToUpdate(site)"></i></td>            
+            <td><div importance="{{site.importance}}"></div></td>
             <td>{{site.title}}</td>
-            <td>{{site.importance}}</td>
-            <td>{{site.url}}</td>
-            <td><i class="trash icon red" ng-click="deleteWebsite(site.id)"></i></td>
+            <td><a href="{{site.url}}">{{site.url}}</a></td>
+            
         </tr>
     </tbody>
 </table>
