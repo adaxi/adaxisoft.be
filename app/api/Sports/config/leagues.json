@@ -2,74 +2,74 @@
     "portugal..1" : {
         "rss" : "http://rss.feedsportal.com/c/32502/f/480420/index.rss",
         "scraper" : "EurofotbalScraper",
-        "local" : "Sports/data/portugal..1.html",
+        "local" : "../data/portugal..1.html",
         "remote" : "http://www.eurofotbal.cz/primeira-liga/2013-2014/vysledky-rozlosovani/?month=0"
     },
     "portugal..2" : {
         "scraper" : "RtpScraper",
-        "local" : "Sports/data/portugal..2.html",
+        "local" : "../data/portugal..2.html",
         "remote" : "http://www.rtp.pt/noticias/index.php?headline=213&visual=64&calendario=1&divisao=14&cod=&int=0&epoca=2013"
     },
     "england..1" : {
         "scraper" : "RtpScraper",
-        "local" : "Sports/data/england..1.html",
+        "local" : "../data/england..1.html",
         "remote" : "http://www.rtp.pt/noticias/index.php?headline=213&visual=64&calendario=1&divisao=4&cod=&int=1&epoca=2013"
     },
     "england..2" : {
         "scraper" : "FootballDataScraper",
-        "local" : "Sports/data/england..2.csv",
+        "local" : "../data/england..2.csv",
         "remote" : "http://www.football-data.co.uk/mmz4281/1314/E1.csv"
     },
     "germany..1" : {
         "scraper" : "EurofotbalScraper",
-        "local" : "Sports/data/germany..1.html",
+        "local" : "../data/germany..1.html",
         "remote" : "http://www.eurofotbal.cz/bundesliga/2013-2014/vysledky-rozlosovani/?month=0"
     },
     "germany..2" : {
         "scraper" : "FootballDataScraper",
-        "local" : "Sports/data/germany..2.csv",
+        "local" : "../data/germany..2.csv",
         "remote" : "http://www.football-data.co.uk/mmz4281/1314/D2.csv"
     },
     "italy..1" : {
         "scraper" : "RtpScraper",
-        "local" : "Sports/data/italy..1.html",
+        "local" : "../data/italy..1.html",
         "remote" : "http://www.rtp.pt/noticias/index.php?headline=213&visual=64&calendario=1&divisao=5&cod=&int=1&epoca=2013"
     },
     "italy..2" : {
         "scraper" : "FootballDataScraper",
-        "local" : "Sports/data/italy..2.csv",
+        "local" : "../data/italy..2.csv",
         "remote" : "http://www.football-data.co.uk/mmz4281/1314/I2.csv"
     },
     "spain..1" : {
         "scraper" : "RtpScraper",
-        "local" : "Sports/data/spain..1.html",
+        "local" : "../data/spain..1.html",
         "remote" : "http://www.rtp.pt/noticias/index.php?headline=213&visual=64&calendario=1&divisao=1&cod=&int=1&epoca=2013"
     },
     "spain..2" : {
         "scraper" : "FootballDataScraper",
-        "local" : "Sports/data/spain..2.csv",
+        "local" : "../data/spain..2.csv",
         "remote" : "http://www.football-data.co.uk/mmz4281/1314/SP2.csv"
     },
     "france..1" : {
         "rss" : "http://www.lequipe.fr/rss/actu_rss_Football.xml",
         "scraper" : "RtpScraper",
-        "local" : "Sports/data/france..1.html",
+        "local" : "../data/france..1.html",
         "remote" : "http://www.rtp.pt/noticias/index.php?headline=213&visual=64&calendario=1&divisao=3&cod=&int=1&epoca=2013"
     },
     "france..2" : {
         "scraper" : "FootballDataScraper",
-        "local" : "Sports/data/france..2.csv",
+        "local" : "../data/france..2.csv",
         "remote" : "http://www.football-data.co.uk/mmz4281/1314/F2.csv"
     },
     "belgium..1" : {
         "rss" : "http://www.sport.be/rss/jupilerproleague_fr.xml",
         "scraper" : "LeSoirScraper",
-        "local" : "Sports/data/belgium..1.html",
+        "local" : "../data/belgium..1.html",
         "remote" : "http://football.lesoir.be/jupiler-pro-league/calendrier"
     },
     "belgium..2" : {
         "scraper" : "LeSoirScraper",
-        "local" : "Sports/data/belgium..2.html",
+        "local" : "../data/belgium..2.html",
         "remote" : "http://football.lesoir.be/division-2/calendrier"
     }
     

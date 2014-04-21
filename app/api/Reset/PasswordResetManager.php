@@ -3,11 +3,13 @@ define( 'HIGH_IMPORTANCE', 10 );
 define( 'MEDIUM_IMPORTANCE', 20 );
 define( 'LOW_IMPORTANCE', 40 );
 
+define( 'MAX_SIZE', 1000);
+
 
 class PasswordResetManager {
 
 	private static function getDatabase() {
-		$database = new PDO( 'sqlite:./Reset/data/database.db' );
+		$database = new PDO( 'sqlite:../data/database.db' );
 		$database->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 		self::createTables( $database );
 		return $database;
@@ -56,8 +58,19 @@ class PasswordResetManager {
 		if (!array_key_exists( 'url', $record )) {
 			throw new Exception( "The url is required" );
 		}
-		
+				
 		$database = self::getDatabase();
+		
+		$select = "SELECT COUNT(*) AS size FROM websites";
+		$statement = $database->prepare( $select );
+		$statement->execute();
+		$size = $statement->fetchColumn();
+		
+		if ($size >= MAX_SIZE) {
+			// Prevent from flooding the database.
+			throw new Exception("This database will not handle any more sites.");
+		}
+		
 		$insert = "INSERT INTO websites (title, importance, url) VALUES (:TITLE, :IMPORTANCE, :URL)";
 		$statement = $database->prepare( $insert );
 		$statement->bindValue( ":TITLE", $record['title'] );
